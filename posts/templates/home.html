@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1> Assalamu alaykum</h1>
+
+
+<hr>
+    <h3>Postlat test</h3>
+    <ul>
+        {% for post in object_list %}
+            <li>{{ post.text }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

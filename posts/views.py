@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from .models import *
 
 
-class HomeView(TemplateView):
+class HomeView(ListView):
     model = Post
     template_name = "home.html"
 
