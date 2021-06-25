@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="cotainer">
+        <form action="{% if p %}{% url "posts_update" p.id %}{% else %}{% url "posts_create" %}{% endif %}" method = "post" >
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_title"> Post nomi:</label>
+                <input id="id_title" type="text" name="title" value="{{ p.title }}" class="form-control" placeholder="Post nomini kiriting">
+            </div>
+            <div class="form-group">
+                <label for="id_text">Post matni</label>
+                <input type="text" name="text" id="id_text" value="{{ p.text }}" class="form-control" placeholder="Post matnini kiriting">
+            </div>
+            <button type="submit" class="btn btn-success">Saqlash</button>
+        </form>
+    </div>
+
+{% endblock content %}
