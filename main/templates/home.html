@@ -3,11 +3,12 @@
 {% block content %}
     <div class="container">
         <div class="text-right">
-            <a href="{% url "posts_create" %}" class="btn btn-info ">Qo'shish </a>
+            <a href="{% url "posts_create" %}" class="btn btn-info"> Qo'shish </a>
+            <hr>
         </div>
         <div class="list-group">
             {% for post in posts %}
-                <div class="list-group-item  align-items-center">
+                <div class="list-group-item d-flex align-items-center">
                     <div>
                         <h4>{{ post.title }}</h4>
                         <p>{{post.text }}</p>
@@ -22,8 +23,8 @@
                     </div>
                 </div>
             {% empty %}
-            <div class="contsiner text-center">
-                <h4>Postlar mavjud emas</h4>
+            <div class="container text-center">
+                <h4>Davlatlar mavjud emas !!!</h4>
             </div>
 
             {% endfor %}
