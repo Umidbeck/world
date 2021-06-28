@@ -6,26 +6,30 @@
             <a href="{% url "posts_create" %}" class="btn btn-info"> Qo'shish </a>
             <hr>
         </div>
-        <div class="list-group">
+        <div class="">
             {% for post in posts %}
                 <div class="list-group-item d-flex align-items-center">
-                    <div>
-                        <h4>{{ post.title }}</h4>
-                        <p>{{post.text }}</p>
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ post.image.url}}" class="card-img-top" style = "width: 100%; height: auto" >
+                        <div class="card-body">
+                        <h4>{{post.title}}</h4>
+                            <p class="card-text">{{post.text}}.</p>
+                            <div class= "py-2 mt-3 d-flex justify-content-between">
+                                    <a href="{% url "posts_update" post.id %}" class="btn btn-warning px-5 py-2">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="{% url "posts_delete" post.id %}" class="btn btn-primary px-5 py-2">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ml-auto">
-                        <a href="{% url "posts_update" post.id %}" class="btn btn-warning">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                        <a href="{% url "posts_delete" post.id %}" class="btn btn-primary">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </div>
-                </div>
+                <div>
+
             {% empty %}
-            <div class="container text-center">
-                <h4>Davlatlar mavjud emas !!!</h4>
-            </div>
+                <div class="container text-center">
+                    <h4>Davlatlar mavjud emas !!!</h4>
+                </div>
 
             {% endfor %}
         </div>
