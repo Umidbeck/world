@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from .models import *
-from django.shortcuts import redirect
+from django.shortcuts import *
 
 
 # class HomeView(ListView):
@@ -16,7 +16,8 @@ class AboutView(TemplateView):
 
 def home(request):
     context = {
-        'posts': Post.objects.all()
+        'posts': PostModel.objects.all(),
+        'category': CategoryModel.objects.all()
     }
     return render(request, "home.html", context)
 
@@ -25,7 +26,7 @@ def home(request):
 
 def create(request):
     if request.method == "POST":
-        p= Post(title=request.POST['title'], text=request.POST['text'])
+        p= PostModel(title=request.POST['title'], text=request.POST['text'])
         p.save()
         return redirect("home")
 
@@ -34,8 +35,8 @@ def create(request):
 
 def update(request, id):
     try:
-        p = Post.objects.get(id=id)
-    except Post.DoesNotExist:
+        p = PostModel.objects.get(id=id)
+    except PostModel.DoesNotExist:
         return redirect("home")
 
     if request.method == "POST":
@@ -51,5 +52,5 @@ def update(request, id):
 
 
 def delete(request, id):
-    Post.objects.filter(id=id).delete()
+    PostModel.objects.filter(id=id).delete()
     return redirect("home")

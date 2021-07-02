@@ -1,38 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container">
-        <div class="text-right">
-            <a href="{% url "posts_create" %}" class="btn btn-info"> Qo'shish </a>
-            <hr>
+        <div class="row mb-3">
+            <div class="col text-right py-4">
+               <a href="{% url "posts_create" %}" class="btn btn-info"> Qo'shish </a>
+            </div>
         </div>
-        <div class="">
-            {% for post in posts %}
-                <div class="list-group-item d-flex align-items-center">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ post.image.url}}" class="card-img-top" style = "width: 100%; height: auto" >
-                        <div class="card-body">
-                        <h4>{{post.title}}</h4>
-                            <p class="card-text">{{post.text}}.</p>
-                            <div class= "py-2 mt-3 d-flex justify-content-between">
-                                    <a href="{% url "posts_update" post.id %}" class="btn btn-warning px-5 py-2">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <a href="{% url "posts_delete" post.id %}" class="btn btn-primary px-5 py-2">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                            </div>
-                        </div>
-                    </div>
-                <div>
 
-            {% empty %}
-                <div class="container text-center">
-                    <h4>Davlatlar mavjud emas !!!</h4>
+        <div class="row">
+            <div class="col-3">
+                <div class="py-3 sticky-top">
+                    <div class="list-group">
+                        {% for c in category %}
+                        <a href="#" class="list-group-item list-group-item-action " aria-current="true">
+                            {{ c.name }}
+                        </a>
+
+                        {% endfor %}
+                    </div>
                 </div>
 
-            {% endfor %}
+            </div>
+            <div class="col-9">
+                <div class="row">
+                   {% for post in posts %}
+                            <div class="col-4">
+                                <div class="card" >
+                                    <img src="{{ post.image.url}}" class="card-img-top" style = "width: 100%; height:250" >
+                                    <div class="card-body">
+                                        <h4>{{post.title}}</h4>
+                                        <p class="card-text">{{post.text}}.</p>
+                                        <div class= "py-2 mt-3 d-flex justify-content-between">
+                                            <a href="{% url "posts_update" post.id %}" class="btn btn-warning px-4 py-2">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <a href="{% url "posts_delete" post.id %}" class="btn btn-primary px-4 py-2">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                   {% empty %}
+
+
+                        <div class="container text-center">
+                            <h4>Davlatlar mavjud emas !!!</h4>
+                        </div>
+                   {% endfor %}
+                </div>
+            </div>
+
         </div>
-    </div>
+
 
 {% endblock %}
